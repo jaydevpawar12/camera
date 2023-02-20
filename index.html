@@ -11,7 +11,7 @@
 
 <body>
     <div class="container mt-5 d-flex justify-content-center align-items-end pb-5 gap-3 vh-100">
-        <button id="start" type="button" class="btn btn-lg btn-dark">Start Camera</button>
+        <button id="start" type="button" class="btn btn-lg btn-primary">Start Camera</button>
 
         <button id="capture" type="button" class="btn btn-lg btn-primary d-none">Capture
             <i class="bi bi-camera"></i>
@@ -23,9 +23,12 @@
 
     </div>
     <div class="position-absolute top-50 start-50 translate-middle">
+        <div id="loader" class="d-flex align-items-center gap-2"></div>
         <video height="200" autoplay controls id="player" class="d-none
         "></video>
     </div>
+
+
     <script>
         const startBtn = document.getElementById("start")
         const captureBtn = document.getElementById("capture")
@@ -36,9 +39,19 @@
             console.log("start button clicked")
             // handelCamera Start
             if (navigator.mediaDevices) {
-                const x = await navigator.mediaDevices.getUserMedia({ video: true })
-                player.srcObject = x
+                document.getElementById("loader").innerHTML = `Opening Camera <div class="spinner-border text-dark"></div>`
+                startBtn.setAttribute("disabled", true)
+                const x = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: {
+                            exact: "environment"
+                        }
+                    },
 
+                })
+                player.srcObject = x
+                document.getElementById("loader").innerHTML = ""
+                startBtn.removeAttribute("disabled")
             } else {
                 console.error("mediaDevices not supported");
             }
