@@ -17,7 +17,7 @@ A camera Progressive Web Application (PWA) is a web application that uses modern
 
 
 ## 🛠 Skills
-Javascript, HTML, CSS...
+ HTML,CSS,Bootstrap,Javascript
 
 
 ## Demo
