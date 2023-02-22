@@ -6,15 +6,19 @@ import {
     switchBtn,
     canvas,
     restartBtn,
-    mode,
+
+    // getmode,
+
 } from "./constants.js"
 
-import { closeCamera, openCamera } from "./camera.js"
+import { closeCamera, openCamera, changeMode } from "./camera.js"
 
 // let mode = "user"
 switchBtn.addEventListener("click", () => {
-    mode = mode === "environment" ? "user" : "environment"
-
+    // mode = mode === "environment" ? "user" : "environment"
+    // getMode() === "environment"
+    //     ? changeMode("user")
+    changeMode()
     player.classList.add("d-none")
     const tracks = player.srcObject.getVideoTracks()
     for (let i = 0; i < tracks.length; i++) {

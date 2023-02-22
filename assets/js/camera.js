@@ -6,8 +6,14 @@ import {
     restartBtn,
     startBtn,
     switchBtn,
-    mode,
+    // getMode,
 } from "./constants.js"
+
+let mode = "user"
+
+export const changeMode = () => {
+    mode = mode === "user" ? "environment" : "user"
+}
 
 export const closeCamera = () => {
     console.log(player.srcObject.getVideoTracks())
@@ -29,7 +35,7 @@ export const openCamera = async () => {
     if (navigator.mediaDevices) {
         document.getElementById("loader").innerHTML = `Opening Camera <div class="spinner-border text-dark"></div>`
         startBtn.setAttribute("disabled", true)
-        console.log(mode);
+        // console.log(mode);
         try {
             const x = await navigator.mediaDevices.getUserMedia({
                 video: {
